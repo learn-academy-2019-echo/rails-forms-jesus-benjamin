@@ -1,5 +1,5 @@
 
-<h1>Add a Blog Post</h1>
+<h1>Edit a Blog Post</h1>
 
 <%= form_with model: @post, local: true do |form| %>
   <% if @post.errors.any? %>
@@ -20,6 +20,6 @@
   <%= form.text_area :content %>
 
   <br />
-  <%= form.submit :create %>
+  <%= form.submit :edit %>
 
 <% end %>
