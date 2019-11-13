@@ -1,11 +1,13 @@
 class BlogPostsController < ApplicationController
   def index
     @posts = BlogPost.all
+    render json: @posts
     #render "index.html.erb"
   end
 
   def show
     @post = BlogPost.find(params[:id])
+    render json: @post
     #render "show.html.erb"
   end
 
@@ -27,19 +29,26 @@ class BlogPostsController < ApplicationController
       @post = BlogPost.new(blog_post_params)
 
       if @post.save
-          redirect_to @post
+          render json: @post, status: 201
       else
-          render action: :new
+          render json: @post.errors, status: 422
     end
+        #HTML VVVVV HTML
+      # if @post.save
+      #     redirect_to @post
+      # else
+      #     render action: :new
+      # end
   end
 
   def delete
     @post = BlogPost.find(params[:id])
-    if @post.destroy
-        redirect_to '/blog_posts'
-    else
-        p "got to hell you bastard"
-    end
+            #HTML VVVVV HTML
+    # if @post.destroy
+    #     redirect_to '/blog_posts'
+    # else
+    #     p "got to hell you bastard"
+    # end
   end
 
   private
